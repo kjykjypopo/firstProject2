@@ -1,0 +1,10 @@
+{{>layouts/header}}
+
+<div class="bg-dark text-white p-5">
+    <h1> {{ result }}</h1>
+    <form action="/randomQuote" method="get">
+        <button type="submit" class="btn btn-danger">다른 명언 보기</button>
+    </form>
+</div>
+
+{{>layouts/footer}}

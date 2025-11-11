@@ -1,0 +1,29 @@
+
+{{>layouts/header}}
+<h1> 회원 상세 정보 </h1>
+
+{{#memberItem}}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">아이디 : {{id}}</label>
+        <input value="{{memberId}}" type="text" name="memberId" class="form-control" id="exampleFormControlInput1" >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">비밀번호</label>
+        <input value="{{password}}" type="password" name="password" class="form-control" id="exampleFormControlInput1" >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">이름</label>
+        <input value="{{name}}" type="text" name="name" class="form-control" id="exampleFormControlInput1" >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">이메일</label>
+        <input value="{{email}}" type="text" name="email" class="form-control" id="exampleFormControlInput1" >
+    </div>
+
+{{/memberItem}}
+
+<a href="/articles/{{memberItem.id}}/edit">회원 수정</a>
+
+<a href="/articles/{{memberItem.id}}/delete">회원 삭제</a>
+
+{{>layouts/footer}}

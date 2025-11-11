@@ -1,0 +1,22 @@
+
+{{>layouts/header}}
+<h1> 게시판 상세글</h1>
+
+{{#showArticleItem}}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">글제목 : {{showArticleItem.id}}</label>
+        <input readonly value="{{showArticleItem.title}}" type="text" name="title" class="form-control" id="exampleFormControlInput1" >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+        <textarea readonly class="form-control" class="form-control" name="content" id="exampleFormControlTextarea1" rows="3">{{showArticleItem.content}}</textarea>
+    </div>
+</form>
+
+{{/showArticleItem}}
+
+<a href="/articles/{{showArticleItem.id}}/edit">글 수정</a>
+
+<a href="/articles/{{showArticleItem.id}}/delete">글 삭제</a>
+
+{{>layouts/footer}}

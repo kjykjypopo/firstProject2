@@ -23,49 +23,50 @@ public class MemberController {
     MemberService memberService;
 
     @GetMapping("/members")
-    public String index(Model mo){
+    public String index(Model mo) {
         mo.addAttribute("memberList", memberService.index());
         return "members/index";
     }
 
     @GetMapping("/members/{id}")
-    public String show(@PathVariable("id") Long id, Model mo){
+    public String show(@PathVariable("id") Long id, Model mo) {
         Member memberEntity = memberService.show(id);
         mo.addAttribute("memberItem", memberEntity);
         return "members/show";
     }
 
     @GetMapping("/members/new")
-    public String newMemberForm(){
+    public String newMemberForm() {
         return "members/new";
     }
 
     @PostMapping("/members/create")
-    public String createMember(MemberForm form){
+    public String createMember(MemberForm form) {
         Member member = form.toEntity();
         memberService.create(form);
         return "redirect:/members";
     }
 
     @GetMapping("/members/{id}/delete")
-    public String delete(@PathVariable("id") Long id, RedirectAttributes mo){
+    public String delete(@PathVariable("id") Long id, RedirectAttributes mo) {
         memberService.delete(id);
         mo.addFlashAttribute("msg", "삭제되었습니다!");
         return "redirect:/members";
     }
 
     @GetMapping("/members/{id}/edit")
-    public String edit(@PathVariable("id") Long id, Model mo){
+    public String edit(@PathVariable("id") Long id, Model mo) {
         Member memberEntity = memberService.edit(id);
         mo.addAttribute("memberItem", memberEntity);
         return "members/edit";
     }
 
     @PostMapping("/members/update")
-    public String update(MemberForm memberForm){
-        Member updated = memberService.create(memberForm);
-        return "redirect:/members/" + updated.getId();
+    public String update(MemberForm memberForm) {
+        Member updated = memberService.update(memberForm);
+        if (updated != null) {
+            return "redirect:/members/" + updated.getId();
+        }
+        return "redirect:/members";
     }
-
-
 }

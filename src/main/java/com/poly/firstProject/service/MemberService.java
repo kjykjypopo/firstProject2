@@ -36,5 +36,12 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-
+    public Member update(MemberForm form) {
+        Member memberEntity = form.toEntity();
+        Member target = memberRepository.findById(memberEntity.getId()).orElse(null);
+        if (target != null) {
+            return memberRepository.save(memberEntity);
+        }
+        return null;
+    }
 }
